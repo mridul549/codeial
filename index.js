@@ -1,13 +1,16 @@
-const express = require('express');
-const path    = require('path');
-const port    = 3000;
+const cookieParser   = require('cookie-parser');
+const bodyParser     = require('body-parser');
+const express        = require('express');
+const path           = require('path');
+const port           = 3000;
 
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
-app.use(express.urlencoded());
-app.use(express.static('public'));
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(express.static('./public'));
 
 // Using express router
 // Now instead of writing the entire code in just one file, we are breaking the code
