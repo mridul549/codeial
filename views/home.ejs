@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Just messing around</title>
+  </head>
+  <body>
+    <h3>This is just a random form to work with post requests</h3>
+    <form action="/" method="post">
+        <label for=""><p>Enter your name</p></label>
+        <input type="text" name="name" id="">
+        <label for=""><p>Enter your phone number</p></label>
+        <input type="number" name="phone" id="">
+        <button type="submit">Submit</button>
+    </form>
+
+    <h3>Setting up an ejs example</h3>
+    <ul>
+      <% for (let i = 0; i < random.length; i++) { %>
+        <li>
+          Name: <%= random[i].name %>
+          Phone: <%= random[i].phone %> 
+        </li>
+      <% } %> 
+
+    </ul>
+  </body>
+</html>
