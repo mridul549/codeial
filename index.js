@@ -4,6 +4,11 @@ const express        = require('express');
 const path           = require('path');
 const port           = 3000;
 
+// Auth
+const session        = require('express-session');
+const passport       = require('passport');
+const passportLocal  = require('./config/passport-local-strategy');
+
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -11,6 +16,22 @@ app.set('view engine', 'ejs')
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('./public'));
+
+// Middleware for session cookie
+app.use(session({
+    name: 'codeial',
+    // TODO- change the secret before deployment
+    secret: 'blahsomething', // encryption
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+        maxAge: (1000*60*100)
+    }
+}))
+
+// auths middlewares
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Using express router
 // Now instead of writing the entire code in just one file, we are breaking the code
