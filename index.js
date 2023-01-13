@@ -32,6 +32,7 @@ app.use(session({
 // auths middlewares
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(passport.setAuthenticatedUser);
 
 // Using express router
 // Now instead of writing the entire code in just one file, we are breaking the code

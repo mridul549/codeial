@@ -1,7 +1,7 @@
 const User = require('../models/user');
 
 module.exports.profile = function(req,res){
-    res.send('This is user profile path');
+    res.render('profile');
 }
 
 module.exports.home = function(req,res){

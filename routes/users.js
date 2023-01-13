@@ -5,7 +5,7 @@ const passport       = require('passport');
 
 // upon coming here, the final route that is served is
 // localhost:3000/users/profile
-router.get('/profile', userController.profile);
+router.get('/profile', passport.checkAuthentication, userController.profile);
 
 // if we want to get a simple '/users/' path, we use this
 router.get('/', userController.home);
