@@ -9,11 +9,19 @@ module.exports.home = function(req,res){
 }
 
 module.exports.signIn = function(req,res){
-    res.render('sign-in');
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
+
+    return res.render('sign-in');
 }
 
 module.exports.signUp = function(req,res){
-    res.render('sign-up');
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
+
+    return res.render('sign-up');
 }
 
 module.exports.create = function(req,res){
@@ -40,5 +48,15 @@ module.exports.create = function(req,res){
 }  
                    
 module.exports.createSession = function(req,res){
+    return res.redirect('/');
+}
+
+module.exports.destroySession = function(req,res){
+    req.logout(function(err){
+        if(err){
+            console.log("error logout");
+        }
+    });
+
     return res.redirect('/');
 }

@@ -1,6 +1,7 @@
 const cookieParser   = require('cookie-parser');
 const bodyParser     = require('body-parser');
 const express        = require('express');
+const mongoose       = require('mongoose');
 const path           = require('path');
 const port           = 3000;
 
@@ -9,11 +10,15 @@ const session        = require('express-session');
 const passport       = require('passport');
 const passportLocal  = require('./config/passport-local-strategy');
 
+// to store cookies permanently even after server reboots
+const MongoStore     = require('connect-mongo');
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
 app.use(cookieParser());
+app.use(express.json());
+
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('./public'));
 
@@ -26,7 +31,15 @@ app.use(session({
     resave: false,
     cookie: {
         maxAge: (1000*60*100)
-    }
+    },
+    store: MongoStore.create ({
+        mongoUrl: "mongodb://localhost/codeial",
+        autoRemove: 'disabled'
+    }, function(err){
+        if(err){
+            console.log(err);
+        }
+    })
 }))
 
 // auths middlewares
