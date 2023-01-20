@@ -1,6 +1,8 @@
 // just add all the callback functions here called actions
 // the entire collections of these functions is called a controller
 const db = require('../config/mongoose');
+const Post = require('../models/post');
+
 const contactsArr = [
     {
         name: "Mridul Verma",
@@ -13,10 +15,19 @@ const contactsArr = [
 ]
 
 module.exports.homeGet = function(req,res){
-    console.log(req.cookies);
-    res.render('home', {
-        random: contactsArr
-    });
+    if(req.isAuthenticated()){
+        const user_id = req.user._id;
+        Post.find({user: user_id}, function(err,postArr){
+            res.render('home', {
+                random: contactsArr,
+                posts: postArr
+            });
+        })
+    } else {
+        res.render('home', {
+            random: contactsArr
+        });
+    }
 }
 
 module.exports.homePost = function(req,res){

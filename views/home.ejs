@@ -40,6 +40,26 @@
       <% } %> 
     </ul>
 
+    
+    <% if(locals.user) { %> 
+      <div id="feed-posts">
+        <h4>Posts</h4>
+        <form action="/posts/create" method="post">
+          <textarea name="content" cols="30" rows="3"></textarea>
+          <input type="submit" value="Post">
+        </form>
+      </div>
 
+      <div>
+        <h4>Posts made by <%= user.name %> </h4>
+        <ul>
+          <% for (let i = 0; i < posts.length; i++) { %>
+            <li>
+              <%= posts[i].content %> 
+            </li>
+          <% } %> 
+        </ul>
+      </div>
+    <% } %> 
   </body>
 </html>
