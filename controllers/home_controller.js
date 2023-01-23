@@ -1,6 +1,7 @@
 // just add all the callback functions here called actions
 // the entire collections of these functions is called a controller
 const db = require('../config/mongoose');
+const User = require('../models/user');
 const Post = require('../models/post');
 
 const contactsArr = [
@@ -14,20 +15,28 @@ const contactsArr = [
     }
 ]
 
-module.exports.homeGet = function(req,res){
-    if(req.isAuthenticated()){
-        const user_id = req.user._id;
-        Post.find({user: user_id}, function(err,postArr){
-            res.render('home', {
-                random: contactsArr,
-                posts: postArr
-            });
+module.exports.homeGet = async function(req,res){
+    // if(req.isAuthenticated()){
+    //     const user_id = req.user._id;
+    //     Post.find({user: user_id}, function(err,postArr){
+    //         res.render('home', {
+    //             random: contactsArr,
+    //             posts: postArr
+    //         });
+    //     })
+    // } else {
+    //     res.render('home', {
+    //         random: contactsArr
+    //     });
+    // }
+
+    await Post.find({}).populate('user','name').exec(function(err, posts){
+        console.log(err);
+        return res.render('home', {
+            random: contactsArr,
+            posts: posts
         })
-    } else {
-        res.render('home', {
-            random: contactsArr
-        });
-    }
+    })
 }
 
 module.exports.homePost = function(req,res){

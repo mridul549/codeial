@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema ({
     timestamps: true
 });
 
-const user = mongoose.model('user', userSchema);
+// capital hona chahiye, gaanth band loh
+const user = mongoose.model('User', userSchema);
 
 module.exports = user;
