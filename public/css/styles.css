@@ -1,3 +1,25 @@
 body {
-    background-color: beige;
+    background-color: #EEF1FF;
+}
+
+.navLink {
+    color: black;
+    margin: 0 5px;
+}
+
+.navLink:hover {
+    color:rgb(72, 71, 71);
+}
+
+.navbar-brand {
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.navbar {
+    padding: 0 10px;
+}
+
+.author {
+    color: gray;
 }

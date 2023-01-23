@@ -3,23 +3,10 @@
 const db = require('../config/mongoose');
 const Post = require('../models/post');
 
-const contactsArr = [
-    {
-        name: "Mridul Verma",
-        phone: "7009100026"
-    },
-    {
-        name: "Chahat",
-        phone: "6239412196"
-    }
-]
-
 module.exports.homeGet = function(req,res){
-
     // populate the user of each post
     Post.find({}).populate('user','name').exec(function(err, posts){
         return res.render('home', {
-            random: contactsArr,
             posts: posts
         })
     })
