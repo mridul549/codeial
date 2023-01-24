@@ -44,15 +44,13 @@
       </div>
     </nav>
 
-    <% if(locals.user) { %> 
-      <div id="feed-posts">
-        <h4>Posts</h4>
-        <form action="/posts/create" method="post">
-          <textarea name="content" cols="30" rows="3"></textarea>
-          <input type="submit" value="Post">
-        </form>
-      </div>
-    <% } %> 
+    <div id="feed-posts">
+      <h4>Posts</h4>
+      <form action="/posts/create" method="post">
+        <textarea name="content" cols="30" rows="3"></textarea>
+        <input type="submit" value="Post">
+      </form>
+    </div>
 
     <div>
       <h4>Posts</h4>
