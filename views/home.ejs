@@ -58,12 +58,37 @@
         <% for (let i = 0; i < posts.length; i++) { %>
           <li>
             <%= posts[i].content %> 
+            <small class="author">
+              by <%= posts[i].user.name %> 
+            </small>
           </li>
-          <small class="author">
-            by <%= posts[i].user.name %> 
-          </small>
+
+          <div class="post-comment">
+            <% if(locals.user) { %>
+              <form action="/comments/create" method="post">
+                <input type="text" name="content" placeholder="Add comment...">
+                <input type="hidden" name="post" value="<%= posts[i]._id %>">
+                <input type="submit" value="Add comment">
+              </form>
+            <% } %> 
+
+            <div class="post-comment-list">
+              <ul id="post-comment-<%= posts[i]._id%>">
+                <% for (comment of posts[i].comments) { %>
+                  <p>
+                    <%= comment.content %>
+                    <small class="author">
+                      by <%= comment.user.name %> 
+                    </small> 
+                  </p>
+                <% } %> 
+              </ul>
+            </div>
+          </div>
+
         <% } %> 
       </ul>
     </div>
+
   </body>
 </html>

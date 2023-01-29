@@ -5,7 +5,15 @@ const Post = require('../models/post');
 
 module.exports.homeGet = function(req,res){
     // populate the user of each post
-    Post.find({}).populate('user','name').exec(function(err, posts){
+    Post.find({})
+    .populate('user','name')
+    .populate({
+        path: 'comments',
+        populate: {
+            path: 'user'
+        }
+    })
+    .exec(function(err, posts){
         return res.render('home', {
             posts: posts
         })

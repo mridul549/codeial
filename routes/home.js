@@ -7,6 +7,7 @@ const homeController = require('../controllers/home_controller');
 // middleware and go to the users route
 router.use('/users', require('./users'));
 router.use('/posts', require('./posts'));
+router.use('/comments', require('./comments'));
 
 // whenever a user makes a get request on '/' route, the server will come here to 
 // determine on what to do next
