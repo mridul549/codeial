@@ -55,58 +55,9 @@
     <div>
       <h4>Posts</h4>
       <ul>
-        <% for (let i = 0; i < posts.length; i++) { %>
-          <li>
-            <!-- if the user who is signed in and the user who created the post are the same, -->
-            <!-- then only show the delete option on the page  -->
-            <% if((locals.user) && (locals.user.id == posts[i].user.id)) {%>
-              <small>
-                <a href="/posts/destroy/<%= posts[i].id %> ">X</a>
-              </small>
-            <% } %> 
-            
-            <!-- show the contents of the post and the author -->
-            <%= posts[i].content %> 
-            <small class="author">
-              by <%= posts[i].user.name %> 
-            </small>
-          </li>
+          <%- include("_post") -%> 
 
-          <div class="post-comment">
-            <!-- if user is signed in then only let him add a post-->
-            <% if(locals.user) { %>
-              <form action="/comments/create" method="post">
-                <input type="text" name="content" placeholder="Add comment...">
-                <!-- hidden input being used to fetch the id of the user who is creating the post -->
-                <input type="hidden" name="post" value="<%= posts[i]._id %>">
-                <input type="submit" value="Add comment">
-              </form>
-            <% } %> 
-
-            <!-- adding comments to a post -->
-            <div class="post-comment-list">
-              <ul id="post-comment-<%= posts[i]._id%>">
-                <% for (comment of posts[i].comments) { %>
-                  <p>
-                    <!-- if the user who is signed in and the user who created the comment are the same, -->
-                    <!-- then only show the delete option on the page  -->
-                    <% if((locals.user) && (locals.user.id == comment.user.id)) { %>
-                      <small>
-                        <a href="/comments/destroy/<%= comment.id %>">X</a>
-                      </small>
-                    <% } %> 
-
-                    <%= comment.content %>
-                    <small class="author">
-                      by <%= comment.user.name %> 
-                    </small> 
-                  </p>
-                <% } %> 
-              </ul>
-            </div>
-          </div>
-
-        <% } %> 
+        
       </ul>
     </div>
 
