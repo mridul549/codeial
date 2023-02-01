@@ -92,7 +92,7 @@
                     <!-- then only show the delete option on the page  -->
                     <% if((locals.user) && (locals.user.id == comment.user.id)) { %>
                       <small>
-                        <a href="/comment/destroy/<%= comment.id %>">X</a>
+                        <a href="/comments/destroy/<%= comment.id %>">X</a>
                       </small>
                     <% } %> 
 
