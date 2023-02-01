@@ -2,6 +2,7 @@
 // the entire collections of these functions is called a controller
 const db = require('../config/mongoose');
 const Post = require('../models/post');
+const User = require('../models/user');
 
 module.exports.homeGet = function(req,res){
     // populate the user of each post
@@ -14,8 +15,11 @@ module.exports.homeGet = function(req,res){
         }
     })
     .exec(function(err, posts){
-        return res.render('home', {
-            posts: posts
+        User.find({}, function(err, users){
+            return res.render('home', {
+                posts: posts,
+                all_friends: users
+            })
         })
     })
 }

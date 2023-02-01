@@ -16,4 +16,17 @@
     </ul>
   </div>
 
+  <div class="user-friends">
+    <h4>Friends</h4>
+    <ul>
+      <% for(u of all_friends) { %>
+        <li>
+          <p>
+            <a href="/users/profile/<%= u.id %> "><%= u.name %> </a>
+          </p>
+        </li>
+      <% } %>  
+    </ul>
+  </div>
+
 <%- include("_footer") %> 
