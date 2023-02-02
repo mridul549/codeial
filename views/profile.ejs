@@ -8,5 +8,15 @@
     <h1>This is the profile page</h1>
     <p><%= profile_user.name %></p>
     <p><%= profile_user.email %></p>
+
+    <% if((user.id) == (profile_user.id)) {%>
+      <h4>Update the profile here</h4>
+      <form action="/users/update/<%= profile_user.id %>" method="post">
+        <input type="text" name="nameUpdate" placeholder="Your name" value="<%= profile_user.name %>" required>
+        <input type="email" name="emailUpdate" placeholder="Your email" value="<%= profile_user.email %>" required>
+        <input type="submit" value="update">
+      </form>
+    <% } %> 
+
   </body>
 </html>
