@@ -47,3 +47,29 @@ a:hover {
     padding-left: 10px;
     height: 100vh;
 }
+
+.comment-input {
+    background-color: #F7F5EB;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgb(185, 185, 185);
+}
+
+.add-btn {
+    background-color: #B5D5C5;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    width: 10%;
+    margin-left: 1%;
+}
+
+.post-btn {
+    width: 5%;
+}
+
+.post-content {
+    border: 1px solid rgb(185, 185, 185);
+    border-radius: 10px;
+
+}
