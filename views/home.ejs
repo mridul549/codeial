@@ -1,32 +1,42 @@
 <%- include("_header") -%> 
-  <%- include("_navbar") -%> 
+<%- include("_navbar") -%> 
 
-  <div id="feed-posts">
-    <h4>Posts</h4>
-    <form action="/posts/create" method="post">
-      <textarea name="content" cols="30" rows="3"></textarea>
-      <input type="submit" value="Post">
-    </form>
+<div id="home-container">
+
+  <div class="row">
+    <div class="col-lg-10">
+      <div id="feed-posts" >
+        <h4>Posts</h4>
+        <form action="/posts/create" method="post">
+          <textarea name="content" cols="30" rows="3"></textarea>
+          <input type="submit" value="Post">
+        </form>
+      </div>
+    
+      <div class="post-array">
+        <h4>Posts</h4>
+        <ul>
+            <%- include("_post") -%> 
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-lg-2">
+      <div class="user-friends">
+        <h4>Friends</h4>
+        <ul>
+          <% for(u of all_friends) { %>
+            <li>
+              <p>
+                <a class="friend-link" href="/users/profile/<%= u.id %> "><%= u.name %> </a>
+              </p>
+            </li>
+            <% } %>  
+          </ul>
+      </div>
+    </div>
+
   </div>
 
-  <div>
-    <h4>Posts</h4>
-    <ul>
-        <%- include("_post") -%> 
-    </ul>
-  </div>
-
-  <div class="user-friends">
-    <h4>Friends</h4>
-    <ul>
-      <% for(u of all_friends) { %>
-        <li>
-          <p>
-            <a href="/users/profile/<%= u.id %> "><%= u.name %> </a>
-          </p>
-        </li>
-      <% } %>  
-    </ul>
-  </div>
-
+</div>
 <%- include("_footer") %> 

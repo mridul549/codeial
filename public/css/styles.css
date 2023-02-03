@@ -1,5 +1,13 @@
 body {
-    background-color: #EEF1FF;
+    background-color: #F7F5EB;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color:rgb(130, 129, 129);
 }
 
 .navLink {
@@ -22,4 +30,20 @@ body {
 
 .author {
     color: gray;
+}
+
+.post-array {
+    padding: 10px;
+}
+
+#feed-posts {
+    padding: 10px;
+}
+
+.user-friends {
+    width: 30%;
+    border-left: 1px solid rgb(185, 185, 185);
+    padding-top: 20px;
+    padding-left: 10px;
+    height: 100vh;
 }
