@@ -4,24 +4,33 @@ const db = require('../config/mongoose');
 const Post = require('../models/post');
 const User = require('../models/user');
 
-module.exports.homeGet = function(req,res){
+// in the branch codeial_V3.0, we are gonna start using async awaits 
+// and change the code further according to it
+module.exports.homeGet = async function(req,res){
     // populate the user of each post
-    Post.find({})
-    .populate('user','name')
-    .populate({
-        path: 'comments',
-        populate: {
-            path: 'user'
-        }
-    })
-    .exec(function(err, posts){
-        User.find({}, function(err, users){
-            return res.render('home', {
-                posts: posts,
-                all_friends: users
-            })
+    // The code in the try block is executed first, and if it throws an exception, 
+    // the code in the catch block will be executed. 
+    try {
+        let posts = await Post.find({})
+        .populate('user','name')
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'user'
+            }
         })
-    })
+
+        let users = await User.find({});
+
+        return res.render('home', {
+            posts: posts,
+            all_friends: users
+        })
+
+    } catch(err) {
+        console.log('Error', err);
+        return;
+    }
 }
 
 module.exports.homePost = function(req,res){
