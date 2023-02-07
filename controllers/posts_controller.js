@@ -3,7 +3,7 @@ const Comment = require('../models/comments');
 
 module.exports.createPosts = async function(req,res){
     try {
-        let post = await Post.create({
+        await Post.create({
             content: req.body.content,
             user: req.user._id
         });
@@ -14,7 +14,6 @@ module.exports.createPosts = async function(req,res){
 }
 
 module.exports.destroyPost = async function(req,res) {
-
     try {
         let post = await Post.findById(req.params.id);
         // .id means _id has been converted to string

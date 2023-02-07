@@ -4,7 +4,7 @@ const express        = require('express');
 const mongoose       = require('mongoose');
 const path           = require('path');
 const port           = 3000;
-
+const flash          = require('connect-flash');
 // Auth
 const session        = require('express-session');
 const passport       = require('passport');
@@ -47,6 +47,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
+
+// middleware for flash message, to be declared after session is created (session middleware)
+app.use(flash());
 
 // Using express router
 // Now instead of writing the entire code in just one file, we are breaking the code
