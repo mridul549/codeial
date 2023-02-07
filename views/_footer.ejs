@@ -1,0 +1,41 @@
+  
+  <script>
+    // Writing the script for the flash messages
+
+    // if we find a success flash message with lenght>0
+    // display a notification(using noty) with parameters shown
+    <% if(flash.success && flash.success.length > 0) { %>
+      new Noty({
+          theme: 'semanticui',
+          text: '<%= flash.success %>',
+          type: 'success',
+          layOut: 'topRight',
+          timeout: 2000
+      }).show();
+    <% } %> 
+
+    // if we find an error flash message with lenght>0
+    // display a notification(using noty) with parameters shown
+    <% if(flash.error && flash.error.length > 0) { %>
+      new Noty({
+          theme: 'semanticui',
+          text: '<%= flash.error %>',
+          type: 'error',
+          layOut: 'topRight',
+          timeout: 2000
+      }).show();
+    <% } %> 
+
+    <% if(flash.info && flash.info.length > 0) { %>
+      new Noty({
+          theme: 'semanticui',
+          text: '<%= flash.info %>',
+          type: 'info',
+          layOut: 'topRight',
+          timeout: 1000
+      }).show();
+    <% } %> 
+  </script>
+  
+  </body>
+</html>
