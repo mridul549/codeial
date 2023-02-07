@@ -7,6 +7,7 @@ module.exports.createPosts = async function(req,res){
             content: req.body.content,
             user: req.user._id
         });
+        req.flash('info', 'Post Added');
     } catch (error) {
         console.log(error);
     }
@@ -20,6 +21,7 @@ module.exports.destroyPost = async function(req,res) {
         if(post.user == req.user.id){
             post.remove();
             Comment.deleteMany({post: req.params.id});
+            req.flash('info', 'Post Deleted');
         }
     } catch (error) {
         console.log(error);

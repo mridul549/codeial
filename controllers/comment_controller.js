@@ -21,6 +21,7 @@ module.exports.create = async function(req,res){
             // pushing comment in the comment array of the post
             post.comments.push(comment);
             post.save();
+            req.flash('info', 'Comment Added');
             res.redirect('/');
         }
     } catch (error) {
@@ -38,10 +39,10 @@ module.exports.destroy = async function(req,res){
 
             // finds the comment in the post and pulls it out of the array
             let post = await Post.findByIdAndUpdate(postId, {$pull: {comments: req.params.id}});
+            req.flash('info', 'Comment Deleted');
         } 
         return res.redirect('back');
-
-    } catch(err){
+    } catch(err) {
         console.log(err);
     }
 }

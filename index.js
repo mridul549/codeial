@@ -5,10 +5,14 @@ const mongoose       = require('mongoose');
 const path           = require('path');
 const port           = 3000;
 const flash          = require('connect-flash');
+
 // Auth
 const session        = require('express-session');
 const passport       = require('passport');
 const passportLocal  = require('./config/passport-local-strategy');
+
+// custom middleware 
+const customMware    = require('./config/middleware')
 
 // to store cookies permanently even after server reboots
 const MongoStore     = require('connect-mongo');
@@ -50,6 +54,8 @@ app.use(passport.setAuthenticatedUser);
 
 // middleware for flash message, to be declared after session is created (session middleware)
 app.use(flash());
+// custom middleware function for the flash message
+app.use(customMware.setFlash);
 
 // Using express router
 // Now instead of writing the entire code in just one file, we are breaking the code
